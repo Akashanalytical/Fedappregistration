@@ -1,7 +1,14 @@
 import { TextField, Grid } from "@mui/material";
+import { useEffect, useState } from "react";
 
 const SocialMediaInfo = (props) => {
   const { formik } = props;
+
+  const [usertoched, setusertouched] = useState({
+    whatsapp: false,
+    instagaram: false,
+    facebook: false,
+  });
   return (
     <Grid container spacing={5}>
       <Grid item xs={12} sm={6}>
@@ -12,12 +19,20 @@ const SocialMediaInfo = (props) => {
           required
           size="large"
           type="phone"
+          inputProps={{ maxLength: 10 }}
           fullWidth
           value={formik.values.whatsapp}
           onChange={formik.handleChange}
-          error={Boolean(formik.touched.whatsapp && formik.errors.whatsapp)}
+          onBlur={() => {
+            let updated = { whatsapp: true };
+            setusertouched((usertoched) => ({
+              ...usertoched,
+              ...updated,
+            }));
+          }}
+          error={Boolean(usertoched.whatsapp && formik.errors.whatsapp)}
           helperText={
-            Boolean(formik.touched.whatsapp && formik.errors.whatsapp)
+            Boolean(usertoched.whatsapp && formik.errors.whatsapp)
               ? formik.errors.whatsapp
               : ""
           }
@@ -32,10 +47,17 @@ const SocialMediaInfo = (props) => {
           size="large"
           fullWidth
           value={formik.values.instagaram}
+          onBlur={() => {
+            let updated = { instagaram: true };
+            setusertouched((usertoched) => ({
+              ...usertoched,
+              ...updated,
+            }));
+          }}
           onChange={formik.handleChange}
-          error={Boolean(formik.touched.instagaram && formik.errors.instagaram)}
+          error={Boolean(usertoched.instagaram && formik.errors.instagaram)}
           helperText={
-            Boolean(formik.touched.instagaram && formik.errors.instagaram)
+            Boolean(usertoched.instagaram && formik.errors.instagaram)
               ? formik.errors.instagaram
               : ""
           }
@@ -48,12 +70,20 @@ const SocialMediaInfo = (props) => {
           variant="outlined"
           type="phone"
           fullWidth
+          required
           size="large"
           value={formik.values.facebook}
           onChange={formik.handleChange}
-          error={Boolean(formik.touched.facebook && formik.errors.facebook)}
+          error={Boolean(usertoched.facebook && formik.errors.facebook)}
+          onBlur={() => {
+            let updated = { facebook: false };
+            setusertouched((usertoched) => ({
+              ...usertoched,
+              ...updated,
+            }));
+          }}
           helperText={
-            Boolean(formik.touched.facebook && formik.errors.facebook)
+            Boolean(usertoched.facebook && formik.errors.facebook)
               ? formik.errors.facebook
               : ""
           }

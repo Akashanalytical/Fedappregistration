@@ -1,4 +1,10 @@
-import { Grid, TextField, FormHelperText, MenuItem, Typography } from "@mui/material";
+import {
+  Grid,
+  TextField,
+  FormHelperText,
+  MenuItem,
+  Typography,
+} from "@mui/material";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { DatePicker } from "@mui/x-date-pickers";
 import React, { useState } from "react";
@@ -6,10 +12,9 @@ import axios from "axios";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { ThemeProvider, createTheme } from "@mui/material";
 
-  
-
 const PersonalInfo = (props) => {
   const { formik } = props;
+
   console.log(formik);
   const { Field } = props;
   const iniitaldate = formik.values.date;
@@ -25,14 +30,14 @@ const PersonalInfo = (props) => {
     },
     palette: {
       primary: {
-        main: '#323F8D',
-       
-      }},
-      input: {
-        '&::placeholder': {
-          fontFamily:'Karla'
-        },
+        main: "#323F8D",
       },
+    },
+    input: {
+      "&::placeholder": {
+        fontFamily: "Karla",
+      },
+    },
   });
   const [data, setdata] = useState([]);
   React.useEffect(() => {
@@ -281,7 +286,11 @@ const PersonalInfo = (props) => {
   };
   return (
     <ThemeProvider theme={theme}>
-      <Typography sx={{fontSize:20,color:'#323F8D',fontFamily: 'Karla',mb:5}}>Personal Information</Typography>
+      <Typography
+        sx={{ fontSize: 20, color: "#323F8D", fontFamily: "Karla", mb: 5 }}
+      >
+        Personal Information
+      </Typography>
       <FormikProvider>
         <Grid
           container
@@ -292,7 +301,7 @@ const PersonalInfo = (props) => {
           style={styles.gridStyle}
           alignItems="center"
           justifyContent="center"
-          sx={{ minHeight: "100vh", display:"flex" }}
+          sx={{ minHeight: "100vh", display: "flex" }}
         >
           <Grid item xs={12} lg={6}>
             <TextField
@@ -304,9 +313,9 @@ const PersonalInfo = (props) => {
               fullWidth
               size="large"
               InputLabelProps={{
-                sx:{
-                  fontFamily:'Karla'
-                }
+                sx: {
+                  fontFamily: "Karla",
+                },
               }}
               error={Boolean(
                 formik.touched.firstname && formik.errors.firstname
@@ -326,9 +335,9 @@ const PersonalInfo = (props) => {
               fullWidth
               size="large"
               InputLabelProps={{
-                sx:{
-                  fontFamily:'Karla'
-                }
+                sx: {
+                  fontFamily: "Karla",
+                },
               }}
               error={Boolean(formik.touched.lastname && formik.errors.lastname)}
               helperText={
@@ -341,7 +350,6 @@ const PersonalInfo = (props) => {
             />
           </Grid>
 
-         
           <Grid item xs={12} sm={4}>
             <TextField
               name="usertype"
@@ -351,13 +359,13 @@ const PersonalInfo = (props) => {
               required="true"
               fullWidth
               InputLabelProps={{
-                sx:{
-                  fontFamily:'Karla'
-                }
+                sx: {
+                  fontFamily: "Karla",
+                },
               }}
               disabled
               size="large"
-              value={formik.values.usertype}
+              value={formik.initialValues.usertype}
             />
           </Grid>
           <Grid item xs={12} sm={4}>
@@ -368,9 +376,9 @@ const PersonalInfo = (props) => {
               color="primary"
               fullWidth
               InputLabelProps={{
-                sx:{
-                  fontFamily:'Karla'
-                }
+                sx: {
+                  fontFamily: "Karla",
+                },
               }}
               name="Gender"
               label="Gender"
@@ -406,7 +414,7 @@ const PersonalInfo = (props) => {
                   textField: {
                     variant: "outlined",
                     required: true,
-                    fullWidth:true,
+                    fullWidth: true,
                     error: Boolean(formik.touched.date && formik.errors.date),
                     helperText: Boolean(
                       formik.touched.date && formik.errors.date
@@ -414,14 +422,12 @@ const PersonalInfo = (props) => {
                       ? "Date is Required"
                       : "",
                   },
-                  
                 }}
                 InputLabelProps={{
                   style: {
-                    fontFamily: 'Karla', // Replace 'YourFontFamily' with your desired font family.
+                    fontFamily: "Karla", // Replace 'YourFontFamily' with your desired font family.
                   },
                 }}
-                
               />
             </LocalizationProvider>
           </Grid>
@@ -431,10 +437,11 @@ const PersonalInfo = (props) => {
               label="contact number"
               variant="outlined"
               InputLabelProps={{
-                sx:{
-                  fontFamily:'Karla'
-                }
+                sx: {
+                  fontFamily: "Karla",
+                },
               }}
+              inputProps={{ maxLength: 10 }}
               color="primary"
               fullWidth
               size="large"
@@ -458,12 +465,12 @@ const PersonalInfo = (props) => {
               label="Email"
               variant="outlined"
               color="primary"
+              type={"email"}
               InputLabelProps={{
-                sx:{
-                  fontFamily:'Karla'
-                }
+                sx: {
+                  fontFamily: "Karla",
+                },
               }}
-              disabled
               fullWidth
               size="large"
               onChange={formik.handleChange("email")}
@@ -475,12 +482,12 @@ const PersonalInfo = (props) => {
             <TextField
               select
               required="true"
-              variant="outlined"              
+              variant="outlined"
               color="primary"
               InputLabelProps={{
-                sx:{
-                  fontFamily:'Karla'
-                }
+                sx: {
+                  fontFamily: "Karla",
+                },
               }}
               fullWidth
               label="Select Association"
@@ -513,9 +520,9 @@ const PersonalInfo = (props) => {
               variant="outlined"
               color="primary"
               InputLabelProps={{
-                sx:{
-                  fontFamily:'Karla'
-                }
+                sx: {
+                  fontFamily: "Karla",
+                },
               }}
               type=""
               fullWidth
@@ -535,12 +542,12 @@ const PersonalInfo = (props) => {
               select
               name="State"
               label="Slect state"
-              variant="outlined"             
+              variant="outlined"
               color="primary"
               InputLabelProps={{
-                sx:{
-                  fontFamily:'Karla'
-                }
+                sx: {
+                  fontFamily: "Karla",
+                },
               }}
               type=""
               fullWidth
@@ -568,9 +575,9 @@ const PersonalInfo = (props) => {
               label="Slect city"
               variant="outlined"
               InputLabelProps={{
-                sx:{
-                  fontFamily:'Karla'
-                }
+                sx: {
+                  fontFamily: "Karla",
+                },
               }}
               color="primary"
               type="string"
@@ -598,9 +605,9 @@ const PersonalInfo = (props) => {
               required
               label="Area"
               InputLabelProps={{
-                sx:{
-                  fontFamily:'Karla'
-                }
+                sx: {
+                  fontFamily: "Karla",
+                },
               }}
               variant="outlined"
               color="primary"
@@ -624,9 +631,9 @@ const PersonalInfo = (props) => {
               required
               label="Pin code"
               InputLabelProps={{
-                sx:{
-                  fontFamily:'Karla'
-                }
+                sx: {
+                  fontFamily: "Karla",
+                },
               }}
               color="primary"
               variant="outlined"
